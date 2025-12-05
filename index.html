@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marvis - عرض محدود</title>
+  <style>
+    body { font-family: sans-serif; background:#fdf8f0; margin:0; padding:0; }
+    .container { max-width:600px; margin:0 auto; background:white; padding:20px; border-radius:15px; box-shadow:0 0 12px rgba(0,0,0,0.1); }
+    .hero { text-align:center; }
+    h1 { color:#b08d57; }
+    .price { font-size:28px; color:#b08d57; font-weight:bold; }
+    .timer { font-size:22px; color:#d4a017; margin-top:10px; }
+    .btn { display:block; background:#d4a017; color:white; text-align:center; padding:15px; border-radius:8px; margin-top:20px; text-decoration:none; font-size:20px; }
+    .testimonial-box { background:#fff7e6; padding:15px; border-radius:10px; margin-top:20px; border:1px solid #f0d9a4; }
+    .testimonial-name { font-weight:bold; color:#b08d57; margin-bottom:5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>Marvis</h1>
+      <p>أفضل معجون أسنان لتبييض مثالي</p>
+      <img src="marvis.jpg" alt="Marvis" style="width:100%; border-radius:10px;" />
+      <p class="price">السعر: 2600 دج</p>
+      <div class="timer" id="countdown">الوقت المتبقي للعرض: --:--:--</div>
+    </div>
+
+    <h2 style="margin-top:30px; text-align:center;">نموذج الطلب</h2>
+    <form style="display:flex; flex-direction:column; gap:10px; margin-top:15px;">
+      <input type="text" placeholder="الاسم الكامل" required style="padding:12px; font-size:16px; border-radius:8px; border:1px solid #ccc;" />
+      <input type="tel" placeholder="رقم الهاتف" required style="padding:12px; font-size:16px; border-radius:8px; border:1px solid #ccc;" />
+      <input type="text" placeholder="الولاية" required style="padding:12px; font-size:16px; border-radius:8px; border:1px solid #ccc;" />
+      <button type="submit" class="btn">إرسال الطلب</button>
+    </form>
+
+    <h2 style="text-align:center; margin-top:40px; color:#b08d57;">آراء الزبائن</h2>
+
+    <div class="testimonial-box">
+      <div class="testimonial-name">مريم من وهران</div>
+      <div>المنتج هايل! لاحظت تبييض من أول أسبوع، أنصح به بزاف 🙏✨</div>
+    </div>
+
+    <div class="testimonial-box">
+      <div class="testimonial-name">سليم من الجزائر</div>
+      <div>خدمة رائعة وتوصيل سريع، وهذا أفضل معجون جربتو!</div>
+    </div>
+
+    <a href="https://wa.me/213000000000" class="btn" style="background:#25D366;">تواصل عبر واتساب</a>
+  </div>
+
+  <script>
+    function startCountdown(hours) {
+      let endTime = Date.now() + hours * 60 * 60 * 1000;
+
+      const timer = setInterval(() => {
+        let now = Date.now();
+        let distance = endTime - now;
+
+        if (distance <= 0) {
+          document.getElementById("countdown").innerHTML = "انتهى العرض!";
+          clearInterval(timer);
+          return;
+        }
+
+        let h = Math.floor((distance / (1000 * 60 * 60)));
+        let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let s = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = `الوقت المتبقي للعرض: ${h}:${m}:${s}`;
+      }, 1000);
+    }
+
+    startCountdown(2);
+  </script>
+</body>
+</html>
